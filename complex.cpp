@@ -3,14 +3,15 @@
 #include<iostream>
 
 //Конструктор по умолчанию
-Complex::Complex() :
-	m_r{ sqrt(0) }, m_phi{ atan2(0, 0) }
+Complex::Complex():
+	m_r{ sqrt(0)}, m_phi{ atan2(0, 0) }
 {}
 //Конструктор преобразования
-Complex::Complex(double re) :
+Complex::Complex(double re):
 	m_r{ sqrt(re * re) }, m_phi{ atan2(0, 0) }
-{}
+{} 
 //Конструктор инициализации
+
 Complex::Complex(double re, double im) :
 	m_r{ sqrt(re * re + im * im) }, m_phi{ atan2(im, re) }
 {}
@@ -33,43 +34,50 @@ double Complex::Phi() const
 	return m_phi;
 }
 
-//Перегрузка математических операций
 Complex Complex::operator- ()
 {
-	return Complex(-Re(), - Im());
+	return Complex(-Re(), -Im());
 }
-Complex Complex::operator+ (double right)
+Complex& Complex::operator+=(const Complex& right)
 {
-	return Complex(right + Re(), right + Im());
+	*this = Complex(Re() + right.Re(), Im() + right.Im());
+	return *this;
 }
-Complex Complex::operator- (double right)
+Complex& Complex::operator-=(const Complex& right)
 {
-	return Complex(right - Re(), right - Im());
+	*this = Complex(Re() - right.Re(), Im() - right.Im());
+	return *this;
 }
-Complex Complex::operator* (double right)
+Complex& Complex::operator*=(const Complex& right)
 {
-	return Complex(right * Re(), right * Im());
+	*this = Complex(Re() * right.Re(), Im() * right.Im());
+	return *this;
 }
-Complex Complex::operator/ (double right)
+Complex& Complex::operator/=(const Complex& right)
 {
-	return Complex(right / Re(), right / Im());
+	*this = Complex(Re() / right.Re(), Im() / right.Im());
+	return *this;
 }
+Complex Complex::operator+ (const Complex& right)
 
-Complex Complex::operator+ ( Complex& left)
 {
-	return Complex(Re() + left.Re(), Im() + left.Im());
+	Complex res = *this;
+	return res += right;
 }
-Complex Complex::operator- ( Complex& left)
+Complex Complex::operator- (const Complex& right)
 {
-	return Complex::Complex(Re() - left.Re(), Im() - left.Im());
+	Complex res = *this;
+	return res -= right;
 }
-Complex Complex::operator* ( Complex& left)
+Complex Complex::operator* (const Complex& right)
 {
-	return Complex(Re() * left.Re(), Im() * left.Im());
+	Complex res = *this;
+	return res *= right;
 }
-Complex Complex::operator/ ( Complex& left)
+Complex Complex:: operator/ (const Complex& right)
 {
-	return Complex(Re() / left.Re(), Im() / left.Im());
+	Complex res = *this;
+	return res /= right;
 }
 
 //Перегрузка операторов вывода

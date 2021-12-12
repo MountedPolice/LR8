@@ -7,7 +7,8 @@ using namespace std;
 Complex y(Complex& z)
 {
 	Complex i(0, 1);
-	return (-sin(z * 2) * z + i);
+	Complex res = (i - sin(z * 2) * z);
+	return res;
 }
 
 int main() 
@@ -18,5 +19,8 @@ int main()
 	cin >> a;
 	res = y(a);
 	cout << res;
+
+//	res = Complex(2, 1) * Complex(2, 8);
+//	cout << res;
 }
 
