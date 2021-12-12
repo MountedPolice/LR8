@@ -34,4 +34,3 @@ private:
 };
 
 Complex sin(const Complex& c);
-Complex pow(const Complex& a, const Complex& n);

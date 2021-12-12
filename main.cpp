@@ -19,8 +19,5 @@ int main()
 	cin >> a;
 	res = y(a);
 	cout << res;
-
-//	res = Complex(2, 1) * Complex(2, 8);
-//	cout << res;
 }
 
